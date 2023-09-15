@@ -13,7 +13,6 @@ type Node interface {
 
 type Expression interface {
 	Node
-	exprNode()
 }
 
 type BinaryExpression struct {
@@ -31,16 +30,9 @@ func (be *BinaryExpression) String() string {
 	return fmt.Sprintf("(%s %s %s)", be.Left.String(), tokens[be.Op], be.Right.String())
 }
 
-func (be *BinaryExpression) exprNode() {}
-
 type IntegerLiteral struct {
 	Value    int
 	Position Position
-}
-
-// exprNode implements Expression.
-func (*IntegerLiteral) exprNode() {
-	panic("unimplemented")
 }
 
 func (il *IntegerLiteral) Pos() Position {
