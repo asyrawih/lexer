@@ -67,8 +67,8 @@ func parseMulDivExpr(l *Lexer) Expression {
 
 	for {
 		tok, _ := l.Lex()
-		if tok != MUL && tok != DIV {
-			l.backup()
+		if tok != MUL && tok != DIV && tok != MOD {
+			l.backup() // return prev line and column
 			return left
 		}
 
@@ -114,6 +114,9 @@ func evaluateExpression(expr Expression) (int, error) {
 				return 0, fmt.Errorf("division by zero")
 			}
 			return left / right, nil
+		case MOD:
+			res := left % right
+			return res, nil
 		default:
 			return 0, fmt.Errorf("unknown operator")
 		}

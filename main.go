@@ -12,7 +12,7 @@ func main() {
 	l := NewLexer(r)
 
 	expr := parseExpression(l)
-	fmt.Printf("expr will evaluate: %v\n", expr)
+	fmt.Printf("expr: %v\n", expr)
 	result, err := evaluateExpression(expr)
 	if err != nil {
 		log.Fatal(err)

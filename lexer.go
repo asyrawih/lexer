@@ -20,6 +20,7 @@ const (
 	SUB // -
 	MUL // *
 	DIV // /
+	MOD // %
 )
 
 var tokens = []string{
@@ -31,6 +32,7 @@ var tokens = []string{
 	SUB:     "-",
 	MUL:     "*",
 	DIV:     "/",
+	MOD:     "%",
 }
 
 type Position struct {
@@ -65,6 +67,8 @@ func (l *Lexer) Lex() (Token, string) {
 			return MUL, "*"
 		case '/':
 			return DIV, "/"
+		case '%':
+			return MOD, "%"
 		default:
 			if unicode.IsSpace(r) {
 				continue
